@@ -8,6 +8,7 @@ const player = ref(null);
 const canvas = ref(null);
 let mySource = ref(null);
 let action = ref('');
+let output = ref('');
 
 useAVLine(player, canvas, {
   src: mySource,
@@ -30,7 +31,7 @@ const runSpeechRecognition = () => {
   }
 
   recognition.onresult = async (event) => {
-    let transcript = event.results[0][0].transcript;
+    let transcript = event.results[0][0].transcript
     output.value = transcript
 
     try {
@@ -39,19 +40,35 @@ const runSpeechRecognition = () => {
       })
 
       if(res.data) {
-        
+        mySource.value = '/voice/' + res.data + '.mp3'
+        setTimeout(() => { player.value.play()}, 500);
       }
 
     } catch(error) {
       console.log(error)
     }
   }
+
+  recognition.start()
 }
 
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <!-- <TheWelcome /> -->
+    <div class="btn-section">
+      <button type="button" @click="runSpeechRecognition()">Ask question </button>
+    </div>
+
+    <div class="display-section">
+      <div class="action" v-if="action">{{ action }}</div>
+      <div class="output" v-if="output"><b>Question:</b>{{ output }}</div>
+    </div>
+
+    <div>
+      <audio ref="player" :src="mySource" type="audio/mpeg" controls hidden> </audio>
+      <canvas ref="canvas" />
+    </div>
   </main>
 </template>
