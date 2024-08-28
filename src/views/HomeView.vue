@@ -1,5 +1,4 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 import {ref} from "vue"
 import {useAVLine } from "vue-audio-visual";
 import axios from "axios";
@@ -56,15 +55,17 @@ const runSpeechRecognition = () => {
 
 <template>
   <main>
-    <!-- <TheWelcome /> -->
     <div class="btn-section">
-      <button type="button" @click="runSpeechRecognition()">Ask question </button>
+      <v-btn prepend-icon="$vuetify"   color="#5865f2" type="button" @click="runSpeechRecognition()">
+        Ask question
+    </v-btn>
     </div>
 
     <div class="display-section">
       <div class="action" v-if="action">{{ action }}</div>
       <div class="output" v-if="output"><b>Question:</b>{{ output }}</div>
     </div>
+
 
     <div>
       <audio ref="player" :src="mySource" type="audio/mpeg" controls hidden> </audio>
