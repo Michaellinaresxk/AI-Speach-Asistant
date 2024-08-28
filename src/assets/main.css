@@ -1,35 +1,36 @@
-@import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  width: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+
+.btn-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.display-section {
+  width: 100%;
+  text-align: center;
+  color: white;
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.action {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.output {
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px dotted lightblue;
+  display: inline-block;
 }
